@@ -1,0 +1,146 @@
+[
+    {
+        "id": "cf62e50c7f28697e",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "896935f4c41320ca",
+        "type": "function",
+        "z": "cf62e50c7f28697e",
+        "name": "",
+        "func": "msg.payload = {\n    iot2tangle : [{ \"sensor\": \"LoRa_Sensor\", \"data\": [ msg.payload ] } ],\n    device : \"DEVICE_ID_1\",\n    timestamp : \"\",\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 480,
+        "y": 340,
+        "wires": [
+            [
+                "3b20231027719f79"
+            ]
+        ]
+    },
+    {
+        "id": "3b20231027719f79",
+        "type": "json",
+        "z": "cf62e50c7f28697e",
+        "name": "",
+        "property": "payload",
+        "action": "str",
+        "pretty": false,
+        "x": 630,
+        "y": 340,
+        "wires": [
+            [
+                "a29ccd4a355c5850"
+            ]
+        ]
+    },
+    {
+        "id": "a29ccd4a355c5850",
+        "type": "mqtt out",
+        "z": "cf62e50c7f28697e",
+        "name": "",
+        "topic": "iot2tangle",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "d4f4466140d68f71",
+        "x": 780,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "7316d2ce1feb0b0a",
+        "type": "mqtt in",
+        "z": "cf62e50c7f28697e",
+        "name": "",
+        "topic": "t1/4567/data",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "59bf061cb3e06ad9",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 310,
+        "y": 320,
+        "wires": [
+            [
+                "896935f4c41320ca"
+            ]
+        ]
+    },
+    {
+        "id": "410c718c7f1f5921",
+        "type": "comment",
+        "z": "cf62e50c7f28697e",
+        "name": "Receive data from MQTT broker. Broker data coming from Dragino LoRa gateway. LoRa -> MQTT -> Streams -> IOTA Tangle",
+        "info": "",
+        "x": 540,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "d4f4466140d68f71",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "localhost",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    },
+    {
+        "id": "59bf061cb3e06ad9",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "broker.hivemq.com",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    }
+]
